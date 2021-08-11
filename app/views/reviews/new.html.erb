@@ -1,0 +1,11 @@
+<!--レビュー投稿機能-->
+<h1>レビュー投稿</h1>
+<%= form_with model: @review, local:true do |f| %>
+  <h4>店舗画像</h4>
+  <%= f.attachment_field :image %>
+  <h4>店名</h4>
+  <%= f.text_field :shop_name %>
+  <h4>レビュー</h4>
+  <%= f.text_area :caption %>
+  <%= f.submit '投稿' %>
+<% end %>
