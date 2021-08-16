@@ -1,0 +1,53 @@
+<!--検索後の表示-->
+<div class="container">
+  <div class="col-xs-12">
+    <% if @model == "user" %>
+    <h2>ユーザー検索結果 '<%= @value %>'</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+        </tr>
+      </thead>
+    <% @datas.each do |user| %>
+      <tbody>
+        <tr>
+          <th>
+            <%= attachment_image_tag(user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40') %>
+          </th>
+          <th>
+            <%= user.name %>
+          </th>
+        </tr>
+      </tbody>
+    <% end %>
+    <% elsif @model == "review" %>
+    <h2>レビュー検索結果 '<%= @value %>'</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>店名</th>
+          <th>ユーザーネーム</th>
+        </tr>
+      </thead>
+      <% @datas.each do |review| %>
+      <tbody>
+        <tr>
+          <th>
+            <%= attachment_image_tag(review.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40') %>
+          </th>
+          <th>
+            <%= review.shop_name %>
+          </th>
+          <th>
+            <%= review.user.name %>
+          </th>
+        </tr>
+      </tbody>
+      <% end %>
+    <% end %>
+    </table>
+  </div>
+</div>
