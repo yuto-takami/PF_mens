@@ -8,6 +8,9 @@
   <p>ユーザーネーム：<%= review.user.name %></p>
   <%= attachment_image_tag review.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
   <p><%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %></p>
+  <% review.tags.each do |tag| %>
+    <%= tag.tag_name %>
+  <% end %>
 </div>
 <% end %>
 

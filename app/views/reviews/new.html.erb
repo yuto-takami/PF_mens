@@ -7,5 +7,8 @@
   <%= f.text_field :shop_name %>
   <h4>レビュー</h4>
   <%= f.text_area :caption %>
+  <h4>タグ設定</h4>
+  <h4>半角スペースをつけることで複数のタグを設定できます</h4>
+  <%= f.text_field :tag_name %>
   <%= f.submit '投稿' %>
 <% end %>
