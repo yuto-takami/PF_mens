@@ -15,7 +15,9 @@
   　<header class="border">
       <div class="container">
         <nav class="navbar navbar-expand-lg">
-          <h1 class="title border navbar-brand pt-3 pb-3 pr-5 pl-5 text-dark" href="/">LOGO</h1>
+          <%= link_to root_path do %>
+           <h1 class="title navbar-brand" href="/"><%= image_tag 'logo.png', :size =>'120x120' %></h1>
+          <% end %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -73,7 +75,7 @@
       <div class="container mt-3">
         <div class="row">
           <div class="mx-auto">
-            <p>麺が好き</p>
+            <p>©copyright Yuto.Takami All Rights Reserved.</p>
           </div>
         </div>
       </div>

@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     resources :review_comments, only: [:create, :destroy]
   end
   
+  resources :tags do
+    get 'reviews', to: 'reviews#search'
+  end
+  
   resources :users, only: [:show, :index, :edit, :update] do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'

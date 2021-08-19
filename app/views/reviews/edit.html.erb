@@ -1,11 +1,27 @@
-<!--レビュー編集機能-->
-<h1>レビュー編集</h1>
-<%= form_with model: @review, local:true do |f| %>
-  <h4>店舗画像</h4>
-  <%= f.attachment_field :image %>
-  <h4>店名</h4>
-  <%= f.text_field :shop_name %>
-  <h4>レビュー</h4>
-  <%= f.text_area :caption %>
-  <%= f.submit '投稿' %>
-<% end %>
+<div class="container">
+  <!--レビュー編集機能-->
+  <h1>レビュー編集</h1>
+  <%= form_with model: @review, local:true do |f| %>
+    <label>店舗画像</label>
+    <%= f.attachment_field :image %>
+    <label>店名</label>
+    <%= f.text_field :shop_name %>
+    <div id="evaluate_stars">
+      <label>評価</label>
+    </div>
+    <label>レビュー</label>
+    <%= f.text_area :caption %>
+    <label>タグ設定</label>
+    <h4>半角スペースをつけることで複数のタグを設定できます</h4>
+    <%= f.text_field :tag_name %>
+    <%= f.submit '投稿' %>
+  <% end %>
+  <script>
+    $('#evaluate_stars').raty({
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      scoreName: 'review[evaluation]'
+    });
+  </script>
+</div>

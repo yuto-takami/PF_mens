@@ -25,10 +25,13 @@ class ReviewsController < ApplicationController
   end
   
   def edit
-    
+    @review = Review.find(params[:id])
   end
   
   def update
+    @review = Review.find(params[:id])
+    @review.update(review_params)
+    redirect_to review_path(@review.id)
   end
   
   def destroy
@@ -37,10 +40,16 @@ class ReviewsController < ApplicationController
     redirect_to reviews_path
   end
   
+  def search
+    @tag = Tag.find(params[:tag_id])
+    @review = @tag.review.all
+    @reviews = Review.page(params[:page]).reverse_order
+  end
+  
   private
 
   def review_params
-    params.require(:review).permit(:shop_name, :image, :caption)
+    params.require(:review).permit(:shop_name, :image, :caption, :evaluation)
   end
   
 end

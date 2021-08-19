@@ -1,52 +1,66 @@
 <!--レビュー詳細-->
-<div class="review-body">
-  <%= attachment_image_tag @review, :image, :fill, 250, 200, fallback: "22047646_s.jpg", size: "250x200" %>
-  <p>店名：<%= @review.shop_name %></p>
-  <p>レビュー：<%= @review.caption %></p>
-  <p>ユーザーネーム：<%= @review.user.name %></p>
-  <p>投稿日時：<%= @review.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @review.user == current_user %>
-    <%= link_to "編集", review_path(@review), method: :patch %>
-    <%= link_to "削除", review_path(@review), method: :delete %>
-  <% end %>
-
-  <!--いいね機能-->
-  <% if @review.favorited_by?(current_user) %>
-    <p>
-      <%= link_to review_favorites_path(@review), method: :delete do %>
-        ♥<%= @review.favorites.count %> いいね
+<div class="container">
+  <div class="row my-5">
+    <div class="col-sm-5">
+      <%= attachment_image_tag @review, :image, :fill, 250, 200, fallback: "22047646_s.jpg", size: "250x200" %>
+      <p>店名：<%= @review.shop_name %></p>
+      <p>レビュー：<%= @review.caption %></p>
+      <p>ユーザーネーム：<%= @review.user.name %></p>
+      <p>評価</p>
+      <p class="review-evaluation" data-score="<%= @review.evaluation %>"></p>
+      <p>投稿日時：<%= @review.created_at.strftime('%Y/%m/%d') %></p>
+      <% if @review.user == current_user %>
+        <%= link_to "編集", edit_review_path(@review) %>
+        <%= link_to "削除", review_path(@review), method: :delete %>
       <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to review_favorites_path(@review), method: :post do %>
-        ♡<%= @review.favorites.count %> いいね
+    
+      <!--いいね機能-->
+      <% if @review.favorited_by?(current_user) %>
+        <p>
+          <%= link_to review_favorites_path(@review), method: :delete do %>
+            ♥<%= @review.favorites.count %> いいね
+          <% end %>
+        </p>
+        <% else %>
+        <p>
+          <%= link_to review_favorites_path(@review), method: :post do %>
+            ♡<%= @review.favorites.count %> いいね
+          <% end %>
+        </p>
       <% end %>
-    </p>
-  <% end %>
-</div>
-
-<!--レビューへのコメント機能-->
-<div class="comments">
-<p>コメント件数：<%= @review.review_comments.count %></p>
-<% @review.review_comments.each do |review_comment| %>
-  <%= review_comment.comment %>
-  <%= review_comment.user.name %>
-  <%= attachment_image_tag review_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-  <%= review_comment.created_at.strftime('%Y/%m/%d') %>
-  <!--コメント削除機能-->
-  <% if review_comment.user == current_user %>
-  <div class="comment-delete">
-    <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete %>
+    </div>
+    
+    <!--レビューへのコメント機能-->
+    <div class="col-sm-7">
+      <p>コメント件数：<%= @review.review_comments.count %></p>
+      <% @review.review_comments.each do |review_comment| %>
+        <%= review_comment.comment %>
+        <%= review_comment.user.name %>
+        <%= attachment_image_tag review_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+        <%= review_comment.created_at.strftime('%Y/%m/%d') %>
+        <!--コメント削除機能-->
+        <% if review_comment.user == current_user %>
+        <div class="comment-delete">
+          <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete %>
+        </div>
+        <% end %>
+      <% end %>
+    
+      <!--コメント投稿フォーム-->
+      <%= form_with(model:[@review, @review_comment], local: true) do |f| %>
+        <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+        <%= f.submit "送信する" %>
+      <% end %>
+    </div>
+    
+    <script>
+      $('.review-evaluation').raty({
+        readOnly: true,
+        score: function() {
+          return $(this).attr('data-score');
+        },
+        path: '/assets/'
+      });
+    </script>
   </div>
-  <% end %>
-<% end %>
-</div>
-
-<!--コメント投稿フォーム-->
-<div class="new-comment">
-<%= form_with(model:[@review, @review_comment], local: true) do |f| %>
-  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
-<% end %>
 </div>

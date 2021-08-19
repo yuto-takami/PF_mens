@@ -1,14 +1,14 @@
-class SearchController < ApplicationController
-  
+class SearchesController < ApplicationController
+
   def search
     @model = params["search"]["model"]
     @value = params["search"]["value"]
     @how = params["search"]["how"]
     @datas = search_for(@how, @model, @value)
   end
-  
+
   private
-  
+
   def match(model, value)
     if model == 'user'
       User.where(name: value)
@@ -16,7 +16,7 @@ class SearchController < ApplicationController
       Review.where(shop_name: value)
     end
   end
-  
+
   def partical(model, value)
     if model == 'user'
       User.where("name LIKE ?", "%#{value}%")
@@ -24,7 +24,7 @@ class SearchController < ApplicationController
       Review.where("shop_name LIKE ?", "%#{value}%")
     end
   end
-  
+
   def search_for(how, model, value)
     case how
     when 'match'
