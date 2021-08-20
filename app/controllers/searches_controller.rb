@@ -1,9 +1,8 @@
 class SearchesController < ApplicationController
-
   def search
-    @model = params["search"]["model"]
-    @value = params["search"]["value"]
-    @how = params["search"]["how"]
+    @model = params['search']['model']
+    @value = params['search']['value']
+    @how = params['search']['how']
     @datas = search_for(@how, @model, @value)
   end
 
@@ -19,9 +18,9 @@ class SearchesController < ApplicationController
 
   def partical(model, value)
     if model == 'user'
-      User.where("name LIKE ?", "%#{value}%")
+      User.where('name LIKE ?', "%#{value}%")
     elsif model == 'review'
-      Review.where("shop_name LIKE ?", "%#{value}%")
+      Review.where('shop_name LIKE ?', "%#{value}%")
     end
   end
 
