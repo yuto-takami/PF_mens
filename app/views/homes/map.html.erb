@@ -1,0 +1,22 @@
+<!--イメージマップ-->
+<div class="container">
+  <div id="map1"><%= image_tag "22043060.jpg", usemap: "#ImageMap" %>
+    <map name="ImageMap">
+      <area shape="rect" coords="572,36,806,169" href="https://google.com/" alt="北海道地方" />
+      <area shape="rect" coords="567,181,651,330" href="#" alt="東北地方" />
+      <area shape="rect" coords="537,333,623,395" href="#" alt="関東地方" />
+      <area shape="rect" coords="445,318,532,404" href="#" alt="中部地方" />
+      <area shape="rect" coords="374,372,445,445" href="#" alt="関西地方" />
+      <area shape="rect" coords="231,376,367,421" href="#" alt="中国地方" />
+      <area shape="rect" coords="291,421,374,467" href="#" alt="四国地方" />
+      <area shape="rect" coords="184,431,282,524" href="#" alt="九州地方" />
+      <area shape="rect" coords="666,453,758,543" href="#" alt="九州地方" />
+    </map>
+  </div>
+</div>
+<script>
+ $(function() {
+  $('img[usemap]').rwdImageMaps();
+ })
+</script>
+
