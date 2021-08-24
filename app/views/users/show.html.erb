@@ -1,45 +1,62 @@
-<h3 class="profile-name"><%= @user.name %></h3>
-<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+<div class="container">
+  <div class="row text-center mb-4">
+    <div class="col-sm-12">
+      <h4 class="profile-name"><%= @user.name %>さんのプロフィール</h4>
+    </div>
+  </div>
 
-<!--フォローフォロワー機能--><!--プロフィール編集-->
-<div>
-  フォロー
-  <%= link_to user_followings_path(@user) do %>
-    <%= @user.followings.count %>
-  <% end %>
-</div>
-<div>
-  フォロワー
-  <%= link_to user_followers_path(@user) do %>
-    <%= @user.followers.count %>
-  <% end %>
-</div>
-<% if @user == current_user %>
-  <%= link_to "", edit_user_path(@user), class: 'fas fa-user-cog btn btn-outline-dark' %>
-<% end %>
-<% unless @user == current_user %>
-  <% if current_user.following?(@user) %>
-    <button type="button" class="btn btn-success text-muted">
-      <%= link_to "フォローを外す", user_relationships_path(@user.id), method: :delete %>
-    </button>
-  <% else %>
-    <button type="button" class="btn btn-success text-white">
-      <%= link_to "フォローする", user_relationships_path(@user.id), method: :post %>
-    </button>
-  <% end %>
-<% end %>
+  <div class="row text-leftr">
+    <div class="col-sm-5 offset-sm-1">
+      <strong>プロフィール画像</strong>
+        <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "20200503_noimage.jpg", size: "100x100" %>
+      <% if @user == current_user %>
+        <%= link_to "", edit_user_path(@user), class: 'fas fa-user-cog btn btn-outline-dark col-sm-3' %>
+      <% end %>
+      <% unless @user == current_user %>
+        <% if current_user.following?(@user) %>
+          <%= link_to "フォローを外す", user_relationships_path(@user.id), method: :delete, class: 'btn btn-success' %>
+        <% else %>
+          <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: 'btn btn-success' %>
+        <% end %>
+      <% end %>
+    </div>
+      <!--フォローフォロワー,プロフィール編集機能-->
+    <div class="col-sm-6">
+      <div class="text">
+        <label>フォロー</label>
+        <%= link_to user_followings_path(@user) do %>
+          <%= @user.followings.count %>
+        <% end %>人
+      </div>
+      <div class="text">
+        <label>フォロワー</label>
+        <%= link_to user_followers_path(@user) do %>
+          <%= @user.followers.count %>
+        <% end %>人
+      </div>
+    </div>
+  </div>
+    
+  <!--ユーザーの投稿-->
+  <div class="row text-center mb-4">
+    <div class="col-sm-12">
+      <h4 class="profile-name"><%= @user.name %>さんの投稿記事</h4>
+    </div>
+  </div>
+  <div class="row text-center">
+      <% @reviews.each do |review| %>
+        <div class="col-sm-6 mb-4">
+          <%= link_to review_path(review.id) do %>
+            <%= attachment_image_tag review, :image, :fill, 170, 100, fallback: "22047646_s.jpg", size: "170x100" %>
+            <p class="text">店名：<%= review.shop_name %></p>
+          <% end %>
+          <p>ユーザーネーム：<%= review.user.name %></p>
+          <i class="far fa-comment-dots"></i>
+          <%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %>
+        </div>
+      <% end %>
+  </div>
 
-<!--自身の投稿-->
-<% @reviews.each do |review| %>
-<div>
-  <%= link_to review_path(review.id) do %>
-    <%= attachment_image_tag review, :image, :fill, 170, 100, fallback: "22047646_s.jpg", size: "170x100" %>
-    <p>店名：<%= review.shop_name %></p>
-  <% end %>
-  <p>ユーザーネーム：<%= review.user.name %></p>
-  <p><%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %></p>
+  <!--ページャ機能-->
+  <%= paginate @reviews %>
 </div>
-<% end %>
-
-<!--ページャ機能-->
-<%= paginate @reviews %>

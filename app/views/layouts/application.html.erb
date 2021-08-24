@@ -5,92 +5,82 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/assets/jquery.rwdImageMaps.js"></script>
+
   </head>
 
   <body>
     <!--ヘッダー-->
-  　<header class="border">
+  　<header>
       <div class="container">
         <nav class="navbar navbar-expand-lg">
           <%= link_to root_path do %>
-           <h1 class="title navbar-brand" href="/"><%= image_tag 'logo.png', :size =>'120x120' %></h1>
+            <img src="/assets/logo.png" alt="" class="logo">
           <% end %>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
+          <div class="collapse navbar-collapse">
+            <div class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-              <li class="btn btn-default border ml-4">
-                <%= link_to '地域検索', home_map_path %>
+              <li class="btn btn-default ml-2">
+                <i class="far fa-compass"></i>
+                <%= link_to '地域検索', home_map_path, class: 'text-dark' %>
               </li>
-              <li class="btn btn-default border ml-4">
-                <%= link_to 'マイページ', user_path(current_user.id) %>
+              <li class="btn btn-default ml-2">
+                <i class="far fa-user"></i>
+                <%= link_to 'マイページ', user_path(current_user.id), class: 'text-dark' %>
               </li>
-              <li class="btn btn-default border ml-4">
-            　   <%= link_to "レビュー", reviews_path %>
-          　   </li>
-            　<li class="btn btn-default border ml-4">
-            　   <%= link_to "レビュー投稿", new_review_path %>
-          　   </li>
-              <li class="btn btn-default border ml-4">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              <li class="btn btn-default ml-2">
+                <i class="far fa-comments"></i>
+                <%= link_to "レビュー", reviews_path, class: 'text-dark' %>
+                </li>
+              <li class="btn btn-default ml-2">
+                <i class="fas fa-pen"></i>
+                <%= link_to "レビュー投稿", new_review_path, class: 'text-dark' %>
+              </li>
+              <li class="btn btn-default ml-2">
+                <i class="fas fa-sign-out-alt"></i>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'text-dark' %>
               </li>
             <% else %>
-              <li class="btn btn-default border ml-4">
-                <%= link_to '地域検索', home_map_path %>
+              <li class="btn btn-default ml-2">
+                <i class="far fa-compass"></i>
+                <%= link_to '地域検索', home_map_path, class: 'text-dark' %>
               </li>
-              <li class="btn btn-default border ml-4">
-            　   <%= link_to "レビュー", reviews_path %>
-          　   </li>
-              <li class="btn btn-default border ml-4">
-                <%= link_to "新規登録", new_user_registration_path %>
+              <li class="btn btn-default ml-2">
+                <i class="far fa-comments"></i>
+                <%= link_to "レビュー", reviews_path, class: 'text-dark' %>
               </li>
-              <li class="btn btn-default border ml-4">
-                <%= link_to "ログイン", new_user_session_path %>
+              <li class="btn btn-default ml-2">
+                <i class="fas fa-user-plus"></i>
+                <%= link_to "新規登録", new_user_registration_path, class: 'text-dark' %>
+              </li>
+              <li class="btn btn-default ml-2">
+                <i class="fas fa-sign-in-alt"></i>
+                <%= link_to "ログイン", new_user_session_path, class: 'text-dark' %>
               </li>
             <% end %>
+              <div>
+                <% if user_signed_in? %>
+                  <%= form_with url:search_path, method: :get, local: true do |f| %>
+                    <%= f.text_field 'search[value]', placeholder: "店名検索" %>
+                    <%= button_tag :type => "submit", :name => nil,　class: "button is-info" do %>
+                    <i class="fas fa-search"></i>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </nav>
-        <div class="row">
-          <div class="col-sm-5 offset-sm-7" style="margin-bottom: 15px;">
-            <% if user_signed_in? %>
-              <%= form_with url:search_path, method: :get, local: true do |f| %>
-                <%= f.text_field 'search[value]' %>
-                <%= f.select 'search[model]', options_for_select({ "ユーザー" => "user", "店名" => "review" }) %>
-                <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "部分一致" => "partical" }) %>
-                <%= button_tag :type => "submit", :name => nil,　class: "button is-info " do %>
-                <i class="fas fa-search"></i>
-                <% end %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
       </div>
     </header>
 
     <!--本文-->
     <main>
-      <div class="mb-auto">
+      <div class="mb-auto py-5">
         <%= yield %>
       </div>
     </main>
-
-    <!--フッター-->
-    <footer class="border pt-1 pb-1">
-      <div class="container mt-3">
-        <div class="row">
-          <div class="mx-auto">
-            <p>©copyright Yuto.Takami All Rights Reserved.</p>
-          </div>
-        </div>
-      </div>
-    </footer>
 
   </body>
 </html>

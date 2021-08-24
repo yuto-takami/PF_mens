@@ -4,8 +4,6 @@ class UsersController < ApplicationController
     @reviews = @user.reviews.page(params[:page]).reverse_order
   end
 
-  def index; end
-
   def edit
     @user = User.find(params[:id])
   end

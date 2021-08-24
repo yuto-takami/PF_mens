@@ -16,3 +16,120 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+
+.pagination {
+  justify-content: center;
+}
+
+.text {
+  margin: 10px 0 10px 0;
+}
+
+table.table-borderless-review {
+    border-collapse:separate;
+	border-spacing: 25px;
+}
+
+// ロゴ
+.logo {
+  height: 120px;
+  width: 120px;
+  border-radius: 200px;
+}
+
+// 背景
+body {
+  font-family: 'Calibri','MS UI Gothic','Andale Mono','ヒラギノ丸ゴ ProN','Hiragino Maru Gothic ProN','Avenir Next','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
+  background-image:
+      radial-gradient(150px 150px , rgba(123,222,217, 0.5) 20%, transparent 20%),
+      radial-gradient(400px 380px , rgba(255,255,59,0.8) 20%, transparent 20%),
+      radial-gradient(500px 490px , rgba(123,222,217, 0.5) 20%, transparent 20%),
+      radial-gradient(200px 180px , rgba(255,255,59,0.8) 20%, transparent 20%),
+      radial-gradient(350px 350px , rgba(123,222,217, 0.5) 20%, transparent 20%),
+      radial-gradient(100px 100px , rgba(255,255,59,0.8) 20%, transparent 20%);
+  background-size: 
+      1230px 1280px,
+      810px 910px,
+      1470px 990px,
+      1200px 1700px,
+      1520px 1200px,
+      1100px 1300px;
+  background-position: 
+      -300px -550px,
+      -100px 300px,
+      50px 550px,
+      -200px -510px,
+      50px -230px,
+      130px -150px;
+}
+
+
+// aタグの色
+a {
+  color: black;
+}
+
+
+// トップページのスライド機能
+.slide {
+  position: relative;
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
+}
+
+@keyframes slideshow{
+  0%{
+    opacity: 0;
+  }
+  10%{
+    opacity: 1;
+  }
+  28%{
+    opacity: 1
+  }
+  38%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.slide img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  animation :slideshow 24s linear infinite;
+}
+
+.slide img:nth-child(2){
+  animation-delay: 8s;
+}
+
+.slide img:last-child{
+  animation-delay: 16s;
+}
+
+// プロフィール画像丸型
+img.attachment.user.profile_image {
+  border-radius: 50%;
+}
+
+// 店舗・料理画像丸型
+img.attachment.review.image {
+  border-radius: 3%;
+}
+
+h4{
+  text-decoration: underline;
+}
+
+.rank{
+  border-bottom: solid 2px orange;
+}
+

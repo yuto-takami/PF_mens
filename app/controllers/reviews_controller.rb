@@ -25,11 +25,14 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+    @review.tag_name = @review.tags.pluck(:tag_name).join(" ")
   end
 
   def update
     @review = Review.find(params[:id])
+    @tag_list = params[:review][:tag_name].split(nil)
     @review.update(review_params)
+    @review.update_tag(@tag_list)
     redirect_to review_path(@review.id)
   end
 
@@ -48,6 +51,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:shop_name, :image, :caption, :evaluation)
+    params.require(:review).permit(:shop_name, :image, :caption, :evaluation).merge(area: params[:review][:area].to_i)
   end
 end
