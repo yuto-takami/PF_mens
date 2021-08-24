@@ -3,7 +3,7 @@
   <div class="row mb-4">
     <div class="col-sm-5 text-center">
       <%= attachment_image_tag @review, :image, :fill, 300, 200, fallback: "22047646_s.jpg", size: "300x200" %>
-      <p class="text">店名：<%= @review.shop_name %></p>
+      <p class="shop">店名：<%= @review.shop_name %></p>
       <p>-- レビュー --<%= simple_format(h(@review.caption)) %></p>
       <p>ユーザーネーム：<%= @review.user.name %></p>
       <p>店舗地域：<%= @review.area %></p>

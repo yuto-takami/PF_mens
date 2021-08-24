@@ -1,21 +1,35 @@
 <div class="container">
-  <div class="row">
-    タグが<strong><%= "#{@tag.tag_name}" %></strong>の投稿一覧
+  <div class="row mb-4 text-center">
+    <div class="col-sm-12">
+      <h4>タグが<strong><%= "#{@tag.tag_name}" %></strong>の投稿一覧</h4>
+    </div>
   </div>
   
   <div class="row">
     <% @review.each do |review| %>
+    <div class="col-sm-6 mb-5 text-center">
+      <%= link_to review_path(review.id) do %>
+        <%= attachment_image_tag review, :image, :fill, 250, 150, fallback: "22047646_s.jpg", size: "250x150" %>
+        <p class="text">店名：<%= review.shop_name %></p>
+      <% end %>
+      <div>評価</div>
+      <div class="review-evaluation" data-score="<%= review.evaluation %>"></div>
+      <%= link_to user_path(review.user.id) do %>
+      <p class="text">ユーザーネーム：<%= review.user.name %></p>
+      <% end %>
+      <i class="far fa-comment-dots"></i>
+      <%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %>
       <div>
-        <%= link_to review_path(review.id) do %>
-          <%= attachment_image_tag review, :image, :fill, 170, 100, fallback: "22047646_s.jpg", size: "170x100" %>
-          <p>店名：<%= review.shop_name %></p>
+        <% review.tags.each do |tag| %>
+        <i class="far fa-bookmark"></i>
+          <%= link_to tag_reviews_path(tag.id) do %>
+            <%= tag.tag_name %>
+          <% end %>
         <% end %>
-        <div class="review-evaluation" data-score="<%= review.evaluation %>"></div>
-        <p>ユーザーネーム：<%= review.user.name %></p>
-        <%= attachment_image_tag review.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-        <p><%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %></p>
       </div>
+    </div>
     <% end %>
+    
     <script>
       $('.review-evaluation').raty({
         readOnly: true,

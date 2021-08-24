@@ -10,13 +10,14 @@
     <% @reviews.each do |review| %>
     <div class="col-sm-6 mb-5 text-center">
       <%= link_to review_path(review.id) do %>
-        <%= attachment_image_tag review, :image, :fill, 170, 100, fallback: "22047646_s.jpg", size: "250x150" %>
+        <%= attachment_image_tag review, :image, :fill, 250, 150, fallback: "22047646_s.jpg", size: "250x150" %>
         <p class="text">店名：<%= review.shop_name %></p>
       <% end %>
       <div>評価</div>
       <div class="review-evaluation" data-score="<%= review.evaluation %>"></div>
       <%= link_to user_path(review.user.id) do %>
       <p class="text">ユーザー名：<%= review.user.name %></p>
+      <div><%= attachment_image_tag review.user, :profile_image, :fill, 40, 40, fallback: "20200503_noimage.jpg", size: "40x40" %></div>
       <% end %>
       <i class="far fa-comment-dots"></i>
       <%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %>

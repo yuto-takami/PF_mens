@@ -1,9 +1,29 @@
-<h2>プロフィール編集</h2>
+<div class="container">
+  <div class="row mb-4 text-center">
+    <div class="col-sm-12">
+      <h4>プロフィール編集</h4>
+    </div>
+  </div>
+
 <%= form_with model:@user, local:true do |f| %>
-  <label for="inputName">名前</label>
-  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
-  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-  <label for="inputImage">プロフィール画像</label>
-  <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-  <%= f.submit "変更を保存" %>
+  <div class="row text-center">
+    <div class="col-sm-12">
+      <label>名前</label>
+      <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-sm-12">
+      <label>プロフィール画像</label>
+      <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+      <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "20200503_noimage.jpg", size: "100x100" %>
+    </div>
+  </div>
+  <div class="row text-center mt-2">
+    <div class="col-sm-12">
+      <%= f.submit "変更を保存", class: "btn btn-success col-sm-2" %>
+    </div>
+  </div>
+  
 <% end %>
+</div>

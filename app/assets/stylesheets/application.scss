@@ -21,12 +21,29 @@
   justify-content: center;
 }
 
-.text {
+.shop{
   margin: 10px 0 10px 0;
 }
 
+.text {
+  margin: 10px 0 0 0;
+}
+
+// レビュー投稿・編集フォーム
 table.table-borderless-review {
-    border-collapse:separate;
+  border-collapse:separate;
+	border-spacing: 25px;
+}
+
+// ログインフォーム
+table.table-borderless-login {
+  border-collapse:separate;
+	border-spacing: 25px;
+}
+
+// 新規登録フォーム
+table.table-borderless-signup {
+  border-collapse:separate;
 	border-spacing: 25px;
 }
 
@@ -59,7 +76,7 @@ body {
       -100px 300px,
       50px 550px,
       -200px -510px,
-      50px -230px,
+      120px -230px,
       130px -150px;
 }
 
