@@ -9,8 +9,14 @@ class Review < ApplicationRecord
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
   
+  validates :image, presence: true
+  validates :shop_name, presence: true
+  validates :caption, presence: true
+  validates :area, presence: true
+  validates :evaluation, presence: true
+  
   enum area:{
-    "---":0, 北海道地方:1, 東北地方:2, 関東地方:3, 中部地方:4, 関西地方:5, 中国地方:6, 四国地方:7, 九州地方:8
+    北海道地方:0, 東北地方:1, 関東地方:2, 中部地方:3, 関西地方:4, 中国地方:5, 四国地方:6, 九州地方:7
   }
 
   def favorited_by?(user)

@@ -7,6 +7,7 @@
         このお店のラーメンの味が知りたい！</br>
         そんなあなたの力になります
       </h3>
+      <p class="about">※ログインしないとレビューの投稿・編集・削除、いいね、フォロー機能使用できません</p>
     </div>
     <div class="slide col-sm-6">
       <img src="/assets/4647665_s.jpg" alt="">
@@ -15,7 +16,7 @@
     </div>
   </div>
   
-  <div class="row text-center">
+  <div class="row mb-4 text-center">
     <div class="col-sm-12">
       <h4>人気レビューランキング</h4>
     </div>
@@ -23,7 +24,7 @@
  
   <div class="row text-center">
   <% @all_ranks.each.with_index(1) do |review, i| %>
-    <div class="col-sm-6 mb-5">
+    <div class="col-sm-4 mb-5">
       <p class="rank">
         <i class="fas fa-crown"></i>
         第<%= i %>位
@@ -35,7 +36,7 @@
       <div>評価</div>
       <div class="review-evaluation" data-score="<%= review.evaluation %>"></div>
       <%= link_to user_path(review.user.id) do %>
-      <p class="text">ユーザー名：<%= review.user.name %></p>
+      <p class="text"><i class="fas fa-user-edit"></i><%= review.user.name %></p>
       <% end %>
       <i class="far fa-comment-dots"></i>
       <%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %>

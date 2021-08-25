@@ -1,9 +1,9 @@
 <% if review.favorited_by?(current_user) %>
     <%= link_to review_favorites_path(review), method: :delete, remote: true do %>
-      ♥<%= review.favorites.count %>
-    <% end %>イイネ！
+      <p><i class="fas fa-heart heart-red"></i><%= review.favorites.count %>いいね！</p>
+    <% end %>
   <% else %>
     <%= link_to review_favorites_path(review), method: :post, remote: true do %>
-      ♡<%= review.favorites.count %>
-    <% end %>イイネ！
+      <p><i class="far fa-heart heart-blue"></i><%= review.favorites.count %>いいね！</p>
+    <% end %>
 <% end %>

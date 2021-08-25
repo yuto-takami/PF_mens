@@ -7,9 +7,12 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     @tag_list = params[:review][:tag_name].split(nil)
-    @review.save
-    @review.save_tag(@tag_list)
-    redirect_to reviews_path
+    if @review.save
+       @review.save_tag(@tag_list)
+       redirect_to reviews_path
+    else
+       render :new
+    end
   end
 
   def index
@@ -31,9 +34,12 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     @tag_list = params[:review][:tag_name].split(nil)
-    @review.update(review_params)
-    @review.update_tag(@tag_list)
-    redirect_to review_path(@review.id)
+    if @review.update(review_params)
+       @review.update_tag(@tag_list)
+       redirect_to review_path(@review.id)
+    else
+       render :edit
+    end
   end
 
   def destroy

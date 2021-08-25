@@ -4,23 +4,29 @@
     <div class="col-sm-5 text-center">
       <%= attachment_image_tag @review, :image, :fill, 300, 200, fallback: "22047646_s.jpg", size: "300x200" %>
       <p class="shop">店名：<%= @review.shop_name %></p>
-      <p>-- レビュー --<%= simple_format(h(@review.caption)) %></p>
-      <p>ユーザーネーム：<%= @review.user.name %></p>
-      <p>店舗地域：<%= @review.area %></p>
       <div>評価</div>
       <p class="review-evaluation" data-score="<%= @review.evaluation %>"></p>
-      <p>投稿日時：<%= @review.created_at.strftime('%Y/%m/%d') %></p>
+      <p class="text-body">レビュー<%= simple_format(h(@review.caption)) %></p>
+      <p><i class="fas fa-map-marker-alt"></i>:<%= @review.area %></p>
+      <%= link_to user_path(@review.user.id) do %>
+      <p><i class="fas fa-user-edit"></i>:<%= @review.user.name %></p>
+      <% end %>
+      <p class="time"><i class="fas fa-clock"></i>:<%= @review.created_at.strftime('%Y/%m/%d') %></p>
       <p>
+      <% if user_signed_in? %>
         <% if @review.user == current_user %>
           <%= link_to "編集", edit_review_path(@review), class:'btn btn-primary' %>
           <%= link_to "削除", review_path(@review), method: :delete, class:'btn btn-danger' %>
         <% end %>
+      <% end %>
       </p>
 
       <!--いいね機能-->
+      <% if user_signed_in? %>
       <div class="favorite_button_<%= @review.id %>">
         <%= render 'favorites/favorite', review: @review %>
       </div>
+      <% end %>
     </div>
 
     <!--レビューへのコメント機能-->
@@ -41,11 +47,13 @@
       <% end %>
       
       <!--コメント投稿フォーム-->
-      <%= form_with(model:[@review, @review_comment], local: true) do |f| %>
-        <%= f.text_area :comment, size: "60x5", placeholder: "コメントをここに書いてください" %>
-        <p class="text-center">
-          <%= f.submit "書き込む", class: 'btn btn-success col-sm-2' %>
-        </p>
+      <% if user_signed_in? %>
+        <%= form_with(model:[@review, @review_comment], local: true) do |f| %>
+          <%= f.text_area :comment, size: "60x5", placeholder: "コメントをここに書いてください" %>
+          <p class="text-center">
+            <%= f.submit "書き込む", class: 'btn btn-success col-sm-2' %>
+          </p>
+        <% end %>
       <% end %>
     </div>
 

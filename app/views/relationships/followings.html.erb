@@ -1,22 +1,10 @@
-<h4>フォローされているユーザー</h4>
-<% if @users.exists? %>
-  <thead>
-    <tr>
-      <th>name</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td>フォロー数: <%= user.followings.count %></td>
-        <td>フォロワー数: <%= user.followers.count %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-sm-12 mb-4">
+      <h4>フォローされているユーザー</h4>
+    </div>
+  </div>
+ 
+  <%= render 'relationships/follow', users: @users %>
+  
+</div>

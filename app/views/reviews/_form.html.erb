@@ -1,0 +1,54 @@
+<%= form_with model: review, local:true do |f| %>
+  <div class="row">
+    <div class="col-sm-10 offset-sm-2">
+      <table class="table-borderless-review">
+        <tr>
+          <div>
+            <td><%= f.label :店舗・料理画像 %></td>
+            <td><%= f.attachment_field :image %></td>
+          </div>
+        </tr>
+        <tr>
+          <div>
+            <td><%= f.label :店名 %></td>
+            <td><%= f.text_field :shop_name, class:"form-control", placeholder: "店名を記入してください" %></td>
+          </div>
+        </tr>
+        <tr>
+          <div>
+            <td><%= f.label :レビュー %></td>
+            <td><%= f.text_area :caption, class:"form-control", placeholder: "レビューを記入してください" %></td>
+          </div>
+        </tr>
+        <tr>
+          <div>
+            <td><%= f.label :地域選択 %></td>
+            <td><%= f.select :area, options_for_select(Review.areas), {prompt: "選択してください"} %></td>
+          </div>
+        </tr>
+        <tr>
+          <td><%= f.label :評価 %></td>
+          <td>
+             <div id="evaluate_stars"></div>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>※半角スペースをつけることで複数のタグを設定できます</td>
+        </tr>
+        <tr>
+          <div>
+            <td><%= f.label :タグ設定 %></td>
+            <td><%= f.text_field :tag_name, class:"form-control", placeholder: "タグを記入してください" %></td>
+          </div>
+        </tr>
+      </table>
+    </div>
+  </div>
+  
+  <div class="row text-center my-4">
+    <dev class="col-sm-12">
+      <%= f.submit '投稿', class: 'btn btn-success col-sm-2' %>
+    </dev>
+  </div>
+<% end %>
