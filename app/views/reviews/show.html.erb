@@ -45,7 +45,7 @@
           <% end %>
         </p>
       <% end %>
-      
+
       <!--コメント投稿フォーム-->
       <% if user_signed_in? %>
         <%= form_with(model:[@review, @review_comment], local: true) do |f| %>
@@ -58,6 +58,7 @@
     </div>
 
     <script>
+    $('.review-evaluation').empty();
       $('.review-evaluation').raty({
         readOnly: true,
         score: function() {

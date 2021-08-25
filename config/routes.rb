@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get "home/map" => "homes#map"
   get "/search" => "searches#search"
-
+  
+  get "reviews/area" => "reviews#area"
   resources :reviews do
+    
     resource :favorites, only: [:create, :destroy]
     
     resources :review_comments, only: [:create, :destroy]

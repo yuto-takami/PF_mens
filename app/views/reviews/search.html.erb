@@ -4,7 +4,7 @@
       <h4>タグが<strong><%= "#{@tag.tag_name}" %></strong>の投稿一覧</h4>
     </div>
   </div>
-  
+
   <div class="row">
     <% @review.each do |review| %>
     <div class="col-sm-4 mb-5 text-center">
@@ -29,8 +29,9 @@
       </div>
     </div>
     <% end %>
-    
+
     <script>
+    $('.review-evaluation').empty();
       $('.review-evaluation').raty({
         readOnly: true,
         score: function() {
@@ -40,7 +41,7 @@
       });
     </script>
   </div>
-  
+
   <!--ページャ機能-->
   <%= paginate @reviews %>
 </div>

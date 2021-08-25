@@ -53,6 +53,9 @@ class ReviewsController < ApplicationController
     @review = @tag.review.all
     @reviews = Review.page(params[:page]).reverse_order
   end
+  
+  def area
+  end
 
   private
 
