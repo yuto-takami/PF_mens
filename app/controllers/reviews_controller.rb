@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
 
   def index
     @tag_lists = Tag.all
-    @reviews = Review.all.page(params[:page]).per(2)
+    @reviews = Review.all.page(params[:page]).per(12)
   end
 
   def show
