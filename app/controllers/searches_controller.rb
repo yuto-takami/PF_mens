@@ -1,7 +1,7 @@
 class SearchesController < ApplicationController
   def search
     @value = params['search']['value']
-    @datas = search_for(@value)
+    @datas = search_for(@value).page(params[:page]).per(12)
   end
 
   private

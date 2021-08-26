@@ -1,5 +1,5 @@
 <div class="row text-center">
-<% if @users.exists? %>
+<% if users.exists? %>
   <div class="col-sm-12">
     <table class="table table-stripe">
       <thead>
@@ -14,13 +14,13 @@
         <% users.each do |user| %>
           <tr>
             <td class="align-middle text-right"><%= attachment_image_tag user, :profile_image, :fill, 70, 70, fallback: "20200503_noimage.jpg", size: "70x70" %></td>
-            <td class="align-middle">
+            <td class="relation align-middle">
               <%= link_to user_path(user.id) do %>
                 <%= user.name %>
               <% end %>
             </td>
-            <td class="align-middle">フォロー数: <%= user.followings.count %></td>
-            <td class="align-middle">フォロワー数: <%= user.followers.count %></td>
+            <td class="relation align-middle">フォロー数: <%= user.followings.count %></td>
+            <td class="relation align-middle">フォロワー数: <%= user.followers.count %></td>
           </tr>
         <% end %>
       </tbody>
@@ -28,9 +28,7 @@
   </div>
 </div>
 <% else %>
-<div class="row text-center">
-  <div class="col-sm-12">
-    <h5><i class="fas fa-exclamation-circle"></i>ユーザーはいません<i class="fas fa-exclamation-circle"></i></h5>
-  </div>
+<div class="font col-sm-12">
+  <h5>ユーザーはいません</i></h5>
 </div>
 <% end %>

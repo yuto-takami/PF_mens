@@ -20,40 +20,40 @@
           <div class="collapse navbar-collapse">
             <div class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-              <li class="btn btn-default ml-2">
+              <li class="category ml-4">
                 <i class="far fa-compass"></i>
                 <%= link_to '地域検索', home_map_path, class: 'text-dark' %>
               </li>
-              <li class="btn btn-default ml-2">
+              <li class="category ml-4">
                 <i class="far fa-user"></i>
                 <%= link_to 'マイページ', user_path(current_user.id), class: 'text-dark' %>
               </li>
-              <li class="btn btn-default ml-2">
+              <li class="category ml-4">
                 <i class="far fa-comments"></i>
                 <%= link_to "レビュー", reviews_path, class: 'text-dark' %>
                 </li>
-              <li class="btn btn-default ml-2">
+              <li class="category ml-4">
                 <i class="fas fa-pen"></i>
                 <%= link_to "レビュー投稿", new_review_path, class: 'text-dark' %>
               </li>
-              <li class="btn btn-default ml-2">
+              <li class="category mx-4">
                 <i class="fas fa-sign-out-alt"></i>
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'text-dark' %>
               </li>
             <% else %>
-              <li class="btn btn-default ml-2">
+              <li class="category ml-4">
                 <i class="far fa-compass"></i>
                 <%= link_to '地域検索', home_map_path, class: 'text-dark' %>
               </li>
-              <li class="btn btn-default ml-2">
+              <li class="category ml-4">
                 <i class="far fa-comments"></i>
                 <%= link_to "レビュー", reviews_path, class: 'text-dark' %>
               </li>
-              <li class="btn btn-default ml-2">
+              <li class="category ml-4">
                 <i class="fas fa-user-plus"></i>
                 <%= link_to "新規登録", new_user_registration_path, class: 'text-dark' %>
               </li>
-              <li class="btn btn-default ml-2">
+              <li class="category ml-4">
                 <i class="fas fa-sign-in-alt"></i>
                 <%= link_to "ログイン", new_user_session_path, class: 'text-dark' %>
               </li>

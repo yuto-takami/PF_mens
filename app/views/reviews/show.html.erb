@@ -1,7 +1,7 @@
 <!--レビュー詳細-->
 <div class="container">
   <div class="row mb-4">
-    <div class="col-sm-5 text-center">
+    <div class="font col-sm-5 text-center">
       <%= attachment_image_tag @review, :image, :fill, 300, 200, fallback: "22047646_s.jpg", size: "300x200" %>
       <p class="shop">店名：<%= @review.shop_name %></p>
       <div>評価</div>
@@ -12,33 +12,33 @@
       <p><i class="fas fa-user-edit"></i>:<%= @review.user.name %></p>
       <% end %>
       <p class="time"><i class="fas fa-clock"></i>:<%= @review.created_at.strftime('%Y/%m/%d') %></p>
-      <p>
-      <% if user_signed_in? %>
-        <% if @review.user == current_user %>
-          <%= link_to "編集", edit_review_path(@review), class:'btn btn-primary' %>
-          <%= link_to "削除", review_path(@review), method: :delete, class:'btn btn-danger' %>
-        <% end %>
-      <% end %>
-      </p>
-
+      
       <!--いいね機能-->
       <% if user_signed_in? %>
       <div class="favorite_button_<%= @review.id %>">
         <%= render 'favorites/favorite', review: @review %>
       </div>
       <% end %>
+      
+      <!--編集・削除ボタン-->
+      <% if user_signed_in? %>
+        <% if @review.user == current_user %>
+          <%= link_to "編集", edit_review_path(@review), class:'btn btn-success' %>
+          <%= link_to "削除", review_path(@review), method: :delete, class:'btn btn-danger' %>
+        <% end %>
+      <% end %>
     </div>
-
-    <!--レビューへのコメント機能-->
-    <div class="col-sm-7">
+    
+    <!--レビューへのコメント一覧-->
+    <div class="font col-sm-7">
       <i class="far fa-comment-dots"></i>
       コメント件数：<%= @review.review_comments.count %>件
       <% @review.review_comments.each do |review_comment| %>
-        <p><%= simple_format(h(review_comment.comment)) %></p>
+        <p class="comment"<%= simple_format(h(review_comment.comment)) %></p>
         <p>
-          <%= review_comment.user.name %>
           <%= attachment_image_tag review_comment.user, :profile_image, :fill, 40, 40, fallback: "20200503_noimage.jpg", size: "40x40" %>
-          <%= review_comment.created_at.strftime('%Y/%m/%d') %>
+          <%= review_comment.user.name %>
+          <i class="time"><%= review_comment.created_at.strftime('%Y/%m/%d %H:%M') %></i>
           <!--コメント削除機能-->
           <% if review_comment.user == current_user %>
             <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete, class:'btn btn-danger' %>

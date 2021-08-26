@@ -1,15 +1,13 @@
 Rails.application.routes.draw do
-  get 'search/search'
   devise_for :users
   root to: 'homes#top'
+  get 'search/search'
   get "home/map" => "homes#map"
   get "/search" => "searches#search"
-  
   get "reviews/area" => "reviews#area"
+  
   resources :reviews do
-    
     resource :favorites, only: [:create, :destroy]
-    
     resources :review_comments, only: [:create, :destroy]
   end
 

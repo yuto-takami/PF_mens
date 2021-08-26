@@ -1,11 +1,25 @@
+<!--イメージマップからの絞り込みページ-->
 <div class="container">
   <div class="row mb-4 text-center">
     <div class="col-sm-12">
-      <h4>のレビュー</h>
+      <h4><%= @area_name %>のレビュー</h>
     </div>
   </div>
-  
+
   <div class="row">
-    <div class="col-sm-12">
-    </div>
+    <%= render 'reviews/review', reviews: @reviews %>
+    <script>
+    $('.review-evaluation').empty();
+      $('.review-evaluation').raty({
+        readOnly: true,
+        score: function() {
+          return $(this).attr('data-score');
+        },
+        path: '/assets/'
+      });
+    </script>
   </div>
+
+  <!--ページャ機能-->
+  <%= paginate @reviews %>
+</div>

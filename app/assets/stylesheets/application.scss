@@ -17,32 +17,65 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
+
+// ページネーション
 .pagination {
   justify-content: center;
 }
+
+.pagination>li>a { 
+  border: none;     /*枠線をなくす*/
+  color: black;   /*文字の色を変える*/
+  margin: 0 5px 0 5px;
+ 
+  font-family: 'Segoe UI Black','Yu Gothic UI','Monaco','Hannotate SC','Helvetica','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+  background: #93c9ff;     /*背景の色を変える*/
+  border-radius: 5px;     /*角を丸くする*/
+}
+
+.pagination>li>a:hover {        
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .5);
+  border-radius: 5px; 
+}
+
 
 .about {
   padding-top: 20px;
   font-size: 5px;
 }
 
+
 .shop {
   margin: 10px 0 10px 0;
   font-size: 20px;
 }
+
 
 .text {
   margin: 10px 0 0 0;
   font-size: 20px;
 }
 
+.friend {
+  margin: 10px 0 0 30px;
+  font-size: 20px;
+}
+
+// review/showのフォントサイズ
 .text-body {
   font-size: 20px;
 }
 
+
+// 投稿日時フォントサイズ
 .time{
   font-size: 10px;
 }
+
 
 // レビュー投稿・編集フォーム
 table.table-borderless-review {
@@ -50,17 +83,20 @@ table.table-borderless-review {
 	border-spacing: 25px;
 }
 
+
 // ログインフォーム
 table.table-borderless-login {
   border-collapse:separate;
 	border-spacing: 25px;
 }
 
+
 // 新規登録フォーム
 table.table-borderless-signup {
   border-collapse:separate;
 	border-spacing: 25px;
 }
+
 
 // ロゴ
 .logo {
@@ -69,9 +105,9 @@ table.table-borderless-signup {
   border-radius: 200px;
 }
 
+
 // 背景
 body {
-  font-family: 'Calibri','MS UI Gothic','Andale Mono','ヒラギノ丸ゴ ProN','Hiragino Maru Gothic ProN','Avenir Next','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
   background-image:
       radial-gradient(150px 150px , rgba(123,222,217, 0.5) 20%, transparent 20%),
       radial-gradient(400px 380px , rgba(255,255,59,0.8) 20%, transparent 20%),
@@ -79,14 +115,14 @@ body {
       radial-gradient(200px 180px , rgba(255,255,59,0.8) 20%, transparent 20%),
       radial-gradient(350px 350px , rgba(123,222,217, 0.5) 20%, transparent 20%),
       radial-gradient(100px 100px , rgba(255,255,59,0.8) 20%, transparent 20%);
-  background-size: 
+  background-size:
       1230px 1280px,
       810px 910px,
       1470px 990px,
       1200px 1700px,
       1520px 1200px,
       1100px 1300px;
-  background-position: 
+  background-position:
       -300px -550px,
       -100px 300px,
       50px 550px,
@@ -95,35 +131,22 @@ body {
       130px -150px;
 }
 
-.pagination>li>a {          
-  border: none;     /*枠線をなくす*/
-  color: #696969;   /*文字の色を変える*/
-}
-
-/* 表示しているページ番号のデザイン */
-.pagination>.active>a {     
-  background: #93c9ff;     /*背景の色を変える*/
-  border-radius: 15px;     /*角を丸くする*/
-}
-
-/*ホバー時のデザイン*/
-.pagination>li>a:hover {        
-  border-radius: 15px;    /*角を丸くする*/
-}
 
 // aタグの色
 a {
   color: black;
 }
 
+
 // いいねのハート色
-.heart-red{
+.heart-red {
   color: red;
 }
 
-.heart-blue{
+.heart-blue {
   color: blue;
 }
+
 
 // トップページのスライド機能
 .slide {
@@ -133,7 +156,7 @@ a {
   overflow: hidden;
 }
 
-@keyframes slideshow{
+@keyframes slideshow {
   0%{
     opacity: 0;
   }
@@ -159,46 +182,120 @@ a {
   width: 100%;
   height: auto;
   opacity: 0;
-  animation :slideshow 24s linear infinite;
+  animation :slideshow 9s linear infinite;
 }
 
-.slide img:nth-child(2){
-  animation-delay: 8s;
+.slide img:nth-child(2) {
+  animation-delay: 3s;
 }
 
-.slide img:last-child{
-  animation-delay: 16s;
+.slide img:last-child {
+  animation-delay: 6s;
 }
+
 
 // プロフィール画像丸型
 img.attachment.user.profile_image {
   border-radius: 50%;
 }
 
+
 // 店舗・料理画像丸型
 img.attachment.review.image {
-  border-radius: 3%;
+  border-radius: 5%;
 }
 
+
 // ボタン
-// .btn {
-//     background-color: #f00;
+.btn {
+  border-radius: 20px;
+  margin: 0 10px 0 10px;
+  transition: background-color .3s;
+}
 
-//     transition: background-color 1s;
-// }
+.btn:hover {
+  background-color: #538BFF;
+}
 
-// .btn:hover {
-  
-//     background-color: #333;
-// }
 
 // 見出し
 h4{
-  text-decoration: underline;
-}
-// ランキング順位
-.rank{
-  border-bottom: solid 2px orange;
-  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+  border-bottom: solid 3px #a3ffff;
+  position: relative;
 }
 
+
+// ランキング順位
+.rank {
+  display: inline-block;
+  border-bottom: solid 2px orange;
+  font-size: 30px;
+  margin: 0 10px 30px 0;
+}
+
+
+// ヘッダーのフォント
+header{
+  font-family: 'Segoe UI Black','Yu Gothic UI','Monaco','Hannotate SC','Helvetica','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
+}
+
+
+// レビューの拡大・縮小・フォント
+.men {
+  font-family: 'Segoe UI Black','Yu Gothic UI','Monaco','Hannotate SC','Helvetica','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
+  transition: 0.5s;
+}
+
+.men:hover {
+	transform: scale(1.1);
+	background: #ffffff;
+	box-shadow: 2px 2px 2px 2px #000;
+	border-radius: 15px;
+}
+
+
+// review/showのフォント
+.font {
+  font-family: 'Segoe UI Black','Yu Gothic UI','Monaco','Hannotate SC','Helvetica','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
+}
+
+// followのテーブルフォント
+.relation {
+  font-family: 'Segoe UI Black','Yu Gothic UI','Monaco','Hannotate SC','Helvetica','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
+}
+
+
+// レビューコメントデザイン
+.comment {
+  position: relative;
+  padding: 1.5rem 2rem;
+  border: 3px solid #d8d8d8;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+
+.comment:before {
+  position: absolute;
+  bottom: -14px;
+  left: 1em;
+  width: 0;
+  height: 0;
+  content: '';
+  border-width: 14px 12px 0 12px;
+  border-style: solid;
+  border-color: #d8d8d8 transparent transparent transparent;
+}
+
+.comment:after {
+  position: absolute;
+  bottom: -10px;
+  left: 1em;
+  width: 0;
+  height: 0;
+  content: '';
+  border-width: 14px 12px 0 12px;
+  border-style: solid;
+  border-color: #f9f9f9 transparent transparent transparent;
+}
