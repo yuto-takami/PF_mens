@@ -8,16 +8,6 @@
 
   <div class="row">
     <%= render 'reviews/review', reviews: @reviews %>
-    <script>
-    $('.review-evaluation').empty();
-      $('.review-evaluation').raty({
-        readOnly: true,
-        score: function() {
-          return $(this).attr('data-score');
-        },
-        path: '/assets/'
-      });
-    </script>
   </div>
 
   <!--ページャ機能-->

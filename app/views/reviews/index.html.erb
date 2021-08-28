@@ -6,18 +6,17 @@
     </div>
   </div>
   
+  <!--フラッシュメッセージ-->
+  <div class="row text-center">
+    <div class="font col-sm-12">
+      <% if flash[:success] %>
+        <p class="flash"><%= flash[:success] %></p>
+      <% end %>
+    </div>
+  </div>
+  
   <div class="row">
     <%= render 'reviews/review', reviews: @reviews %>
-    <script>
-    $('.review-evaluation').empty();
-      $('.review-evaluation').raty({
-        readOnly: true,
-        score: function() {
-          return $(this).attr('data-score');
-        },
-        path: '/assets/'
-      });
-    </script>
   </div>
   
   <!--ページャ機能-->

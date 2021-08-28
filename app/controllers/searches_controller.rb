@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
   end
 
   private
-  
+
   def search_for(value)
     Review.where('shop_name LIKE ?', "%#{value}%")
   end

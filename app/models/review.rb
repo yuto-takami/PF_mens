@@ -15,8 +15,8 @@ class Review < ApplicationRecord
   validates :area, presence: true
   validates :evaluation, presence: true
 
-  enum area:{
-    北海道地方:0, 東北地方:1, 関東地方:2, 中部地方:3, 関西地方:4, 中国地方:5, 四国地方:6, 九州地方:7
+  enum area: {
+    北海道地方: 0, 東北地方: 1, 関東地方: 2, 中部地方: 3, 関西地方: 4, 中国地方: 5, 四国地方: 6, 九州地方: 7
   }
 
   def favorited_by?(user)

@@ -1,3 +1,4 @@
+<!--レビュー投稿・編集フォーム-->
 <%= form_with model: review, local:true do |f| %>
   <div class="row">
     <div class="col-sm-10 offset-sm-2">
@@ -17,7 +18,7 @@
         <tr>
           <div>
             <td><%= f.label :レビュー %></td>
-            <td><%= f.text_area :caption, class:"form-control", placeholder: "レビューを記入してください" %></td>
+            <td><%= f.text_area :caption, size: "x5", class:"form-control", placeholder: "レビューを記入してください" %></td>
           </div>
         </tr>
         <tr>

@@ -1,5 +1,16 @@
 <!--レビュー詳細-->
 <div class="container">
+  
+  <!--フラッシュメッセージ-->
+  <div class="row text-center">
+    <div class="font col-sm-12">
+      <% if flash[:success] %>
+        <p class="flash"><%= flash[:success] %></p>
+      <% end %>
+    </div>
+  </div>
+  
+  <!--レビュー詳細-->
   <div class="row mb-4">
     <div class="font col-sm-5 text-center">
       <%= attachment_image_tag @review, :image, :fill, 300, 200, fallback: "22047646_s.jpg", size: "300x200" %>
@@ -56,16 +67,5 @@
         <% end %>
       <% end %>
     </div>
-
-    <script>
-    $('.review-evaluation').empty();
-      $('.review-evaluation').raty({
-        readOnly: true,
-        score: function() {
-          return $(this).attr('data-score');
-        },
-        path: '/assets/'
-      });
-    </script>
   </div>
 </div>

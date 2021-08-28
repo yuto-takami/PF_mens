@@ -71,15 +71,39 @@
             </div>
           </div>
         </nav>
+        <div class="col-sm-9">
+          <% if user_signed_in? %>
+            <p>ようこそ、<%= current_user.name %>さん！</p>
+          <% end %>
+        </div>
       </div>
     </header>
 
     <!--本文-->
     <main>
-      <div class="mb-auto py-5">
+      <div class="mb-auto py-2">
         <%= yield %>
       </div>
+      
+      <!--フラッシュメッセージのフェードアウト-->
+      <script>
+        $(function() {
+          setTimeout("$('.flash').fadeOut('slow')", 2000);
+        });
+      </script>
+      
+      <!--星評価表示-->
+      <script>
+      $('.review-evaluation').empty();
+        $('.review-evaluation').raty({
+          readOnly: true,
+          score: function() {
+            return $(this).attr('data-score');
+          },
+          path: '/assets/'
+        });
+      </script>
     </main>
-
+    
   </body>
 </html>

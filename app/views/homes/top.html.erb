@@ -23,6 +23,7 @@
     </div>
   </div>
  
+  <!--ランキングのレビュー表示-->
   <div class="row text-center">
   <% @all_ranks.each.with_index(1) do |review, i| %>
     <div class="men col-sm-4 mb-5">
@@ -52,16 +53,5 @@
       </div>
     </div>
   <% end %>
-  
-    <script>
-    $('.review-evaluation').empty();
-      $('.review-evaluation').raty({
-        readOnly: true,
-        score: function() {
-          return $(this).attr('data-score');
-        },
-        path: '/assets/'
-      });
-    </script>
   </div>
 </div>

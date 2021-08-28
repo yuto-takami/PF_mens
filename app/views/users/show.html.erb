@@ -5,6 +5,15 @@
       <h4 class="profile-name"><%= @user.name %>さんのプロフィール</h4>
     </div>
   </div>
+  
+  <!--フラッシュメッセージ-->
+  <div class="row text-center">
+    <div class="font col-sm-12">
+      <% if flash[:success] %>
+        <p class="flash"><%= flash[:success] %></p>
+      <% end %>
+    </div>
+  </div>
 
   <!--プロフィール編集・フォロー機能-->
   <div class="row text-left">
@@ -43,6 +52,13 @@
           人
         <% end %>
       </div>
+      <% if @user == current_user %>
+      <div div class="friend">
+        <%= link_to users_like_path(@user) do %>
+        <label class="book-mark"><i class="fas fa-bookmark"></i> いいねしたレビュー</label>
+        <% end %>
+      </div>
+      <% end %>
     </div>
   </div>
 
@@ -80,6 +96,8 @@
     </div>
   </div>
   <% end %>
+  
+  
 
   <!--ページャ機能-->
   <%= paginate @reviews %>

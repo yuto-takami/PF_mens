@@ -1,3 +1,4 @@
+<!--プロフィール編集画面-->
 <div class="container">
   <div class="row mb-4 text-center">
     <div class="col-sm-12">
@@ -7,14 +8,10 @@
   
   <!--フラッシュメッセージ-->
   <div class="row text-center">
-    <div class="col-sm-12">
+    <div class="font col-sm-12">
+      <p class="flash"><%= flash[:danger] %></p>
       <% if @user.errors.any? %>
-        <p><%= @user.errors.count %>件のエラーが発生しました</p>
-        <p>
-          <% @user.errors.full_messages.each do |message| %>
-            <%= message %>
-          <% end %>
-        </p>
+        <p class="flash"><%= @user.errors.count %>件のエラーが発生しました</p>
       <% end %>
     </div>
   </div>

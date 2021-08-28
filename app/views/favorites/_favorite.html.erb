@@ -1,3 +1,4 @@
+<!--いいねボタン-->
 <% if review.favorited_by?(current_user) %>
     <%= link_to review_favorites_path(review), method: :delete, remote: true do %>
       <p><i class="fas fa-heart heart-red"></i><%= review.favorites.count %>いいね！</p>

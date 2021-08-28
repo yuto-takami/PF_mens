@@ -1,3 +1,4 @@
+<!--レビューのbody-->
 <% reviews.each do |review| %>
   <div class="men col-sm-4 mb-5 py-3 text-center">
     <%= link_to review_path(review.id) do %>
@@ -14,7 +15,7 @@
     <%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %>
     <div>
       <% review.tags.each do |tag| %>
-      <i class="far fa-bookmark"></i>
+      <i class="fas fa-tag"></i></i>
         <%= link_to tag_reviews_path(tag.id) do %>
           <%= tag.tag_name %>
         <% end %>

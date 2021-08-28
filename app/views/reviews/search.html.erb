@@ -1,22 +1,14 @@
+<!--タグ検索後の表示-->
 <div class="container">
   <div class="row mb-4 text-center">
     <div class="col-sm-12">
       <h4>タグが<strong><%= "#{@tag.tag_name}" %></strong>の投稿一覧</h4>
     </div>
   </div>
-
+  
+  <!--タグ検索後のレビュー-->
   <div class="row">
     <%= render 'reviews/review', reviews: @reviews %>
-    <script>
-    $('.review-evaluation').empty();
-      $('.review-evaluation').raty({
-        readOnly: true,
-        score: function() {
-          return $(this).attr('data-score');
-        },
-        path: '/assets/'
-      });
-    </script>
   </div>
 
   <!--ページャ機能-->

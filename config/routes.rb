@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "home/map" => "homes#map"
   get "/search" => "searches#search"
   get "reviews/area" => "reviews#area"
-  
+
   resources :reviews do
     resource :favorites, only: [:create, :destroy]
     resources :review_comments, only: [:create, :destroy]
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'reviews', to: 'reviews#search'
   end
 
+  get "users/like" => "users#like"
   resources :users, only: [:show, :edit, :update] do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'

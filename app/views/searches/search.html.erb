@@ -1,11 +1,12 @@
-<!--検索後の表示-->
+<!--店名検索後の表示-->
 <div class="container">
   <div class="row mb-4 text-center">
     <div class="col-sm-12">
-       <h4>レビュー検索結果 "<%= @value %>"</h4>
+       <h4>店名の検索結果 "<%= @value %>"</h4>
     </div>
   </div>
   
+  <!--店名検索後のレビュー-->
   <div class="row">
     <% @datas.each do |review| %>
     <div class="men col-sm-4 mb-5 text-center">
@@ -31,17 +32,6 @@
       </div>
     </div>
     <% end %>
-    
-    <script>
-    $('.review-evaluation').empty();
-      $('.review-evaluation').raty({
-        readOnly: true,
-        score: function() {
-          return $(this).attr('data-score');
-        },
-        path: '/assets/'
-      });
-    </script>
   </div>
 
   <!--ページャ機能-->

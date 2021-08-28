@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @reviews = @user.reviews.page(params[:page]).per(9)
+    @reviews = @user.reviews.page(params[:page]).per(9).reverse_order
   end
 
   def edit
@@ -11,10 +11,17 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-       redirect_to user_path(@user.id)
+      flash[:success] = 'ユーザーの編集完了しました！'
+      redirect_to user_path(@user.id)
     else
-       render :edit
+      flash.now[:danger] = 'ユーザーの編集に失敗しました'
+      render :edit
     end
+  end
+
+  def like
+    # @like = User.find()
+    # @reviews =
   end
 
   private

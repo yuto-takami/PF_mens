@@ -1,5 +1,5 @@
+<!--レビュー編集機能-->
 <div class="container">
-  <!--レビュー編集機能-->
   <div class="row mb-4 text-center">
     <div class="col-sm-12">
       <h4>レビュー編集</h>
@@ -8,14 +8,10 @@
   
   <!--フラッシュメッセージ-->
   <div class="row text-center">
-    <div class="col-sm-12">
+    <div class="font col-sm-12">
+      <p class="flash"><%= flash[:danger] %></p>
       <% if @review.errors.any? %>
-        <p><%= @review.errors.count %>件のエラーが発生しました</p>
-        <p>
-          <% @review.errors.full_messages.each do |message| %>
-            <%= message %>
-          <% end %>
-        </p>
+        <p class="flash"><%= @review.errors.count %>件のエラーが発生しました</p>
       <% end %>
     </div>
   </div>
