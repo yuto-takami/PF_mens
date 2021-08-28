@@ -54,7 +54,7 @@
       </div>
       <% if @user == current_user %>
       <div div class="friend">
-        <%= link_to users_like_path(@user) do %>
+        <%= link_to like_user_path(@user) do %>
         <label class="book-mark"><i class="fas fa-bookmark"></i> いいねしたレビュー</label>
         <% end %>
       </div>
@@ -96,8 +96,6 @@
     </div>
   </div>
   <% end %>
-  
-  
 
   <!--ページャ機能-->
   <%= paginate @reviews %>

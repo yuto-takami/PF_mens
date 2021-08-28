@@ -20,8 +20,8 @@ class UsersController < ApplicationController
   end
 
   def like
-    # @like = User.find()
-    # @reviews =
+    reviews_ids = Favorite.where(user_id: params[:id]).pluck(:review_id)
+    @reviews = Review.where(id: reviews_ids)
   end
 
   private
