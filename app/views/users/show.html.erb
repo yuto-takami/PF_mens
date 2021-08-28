@@ -68,6 +68,7 @@
       <h4 class="profile-name"><%= @user.name %>さんの投稿記事</h4>
     </div>
   </div>
+  
   <% if @reviews.exists? %>
   <div class="row text-center">
     <% @reviews.each do |review| %>

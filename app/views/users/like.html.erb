@@ -6,7 +6,18 @@
     </div>
   </div>
   
+  <% if @reviews.exists? %>
   <div class="row">
     <%= render 'reviews/review', reviews: @reviews %>
   </div>
+  <% else %>
+  <div class="row text-center">
+    <div class="font col-sm-12">
+      <h5>投稿レビューはありません</h5>
+    </div>
+  </div>
+  <% end %>
+  
+  <!--ページャ機能-->
+  <%= paginate @reviews %>
 </div>

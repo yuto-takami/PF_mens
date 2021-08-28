@@ -7,7 +7,15 @@
   </div>
 
   <div class="row">
-    <%= render 'reviews/review', reviews: @reviews %>
+    <% if @reviews.exists? %>
+      <%= render 'reviews/review', reviews: @reviews %>
+    <% else %>
+    <div class="row text-center">
+      <div class="font col-sm-12">
+        <h5>投稿レビューはありません</h5>
+      </div>
+    </div>
+    <% end %>
   </div>
 
   <!--ページャ機能-->

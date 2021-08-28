@@ -14,9 +14,9 @@
   　<header>
       <div class="container">
         <nav class="navbar navbar-expand-lg">
-          <%= link_to root_path do %>
-            <img src="/assets/logo.png" alt="" class="logo">
-          <% end %>
+            <%= link_to root_path do %>
+              <%= image_tag "logo.png", class: "logo" %>
+            <% end %>
           <div class="collapse navbar-collapse">
             <div class="navbar-nav ml-auto">
             <% if user_signed_in? %>

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, except: %i[top map area like index show search]
+  before_action :authenticate_user!, except: [:top, :map, :area, :like, :index, :show, :search]
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
