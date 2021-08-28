@@ -77,6 +77,8 @@
           <%= attachment_image_tag review, :image, :fill, 250, 150, fallback: "22047646_s.jpg", size: "250x150" %>
           <p class="shop">店名：<%= review.shop_name %></p>
         <% end %>
+        <div>評価</div>
+        <div class="review-evaluation" data-score="<%= review.evaluation %>"></div>
         <i class="far fa-comment-dots"></i>
         <%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %>
         <div>
