@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews.page(params[:page]).per(9).reverse_order
+    if @reviewws == nil
+       @reviews = []
+    end
   end
 
   def edit
@@ -22,6 +25,9 @@ class UsersController < ApplicationController
   def like
     reviews_ids = Favorite.where(user_id: params[:id]).pluck(:review_id)
     @reviews = Review.where(id: reviews_ids)
+    if @reviews == nil
+       @reviews = []
+    end
   end
 
   private

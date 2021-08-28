@@ -20,6 +20,9 @@ class ReviewsController < ApplicationController
   def index
     @tag_lists = Tag.all
     @reviews = Review.all.page(params[:page]).per(12).reverse_order
+    if @reviews == nil
+       @reviews = []
+    end
   end
 
   def show
@@ -55,6 +58,9 @@ class ReviewsController < ApplicationController
   def search
     @tag = Tag.find(params[:tag_id])
     @reviews = @tag.review.all.page(params[:page]).per(12).reverse_order
+    if @reviews == nil
+       @reviews = []
+    end
   end
 
   def area
