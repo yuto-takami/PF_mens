@@ -7,7 +7,7 @@ class Review < ApplicationRecord
   has_many :review_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :tag_maps, dependent: :destroy
-  has_many :tags, through: :tag_maps
+  has_many :tags, through: :tag_maps, dependent: :destroy
 
   validates :image, presence: true
   validates :shop_name, presence: true
@@ -29,7 +29,7 @@ class Review < ApplicationRecord
     new_tags = sent_tags - current_tags
 
     old_tags.each do |old|
-      review_tags.delete ReviewTag.find_by(tag_name: old)
+      tags.delete Tag.find_by(tag_name: old)
     end
 
     new_tags.each do |new|
@@ -44,7 +44,7 @@ class Review < ApplicationRecord
     new_tags = sent_tags - current_tags
 
     old_tags.each do |old|
-      review_tags.delete ReviewTag.find_by(tag_name: old)
+      tags.delete Tag.find_by(tag_name: old)
     end
 
     new_tags.each do |new|
