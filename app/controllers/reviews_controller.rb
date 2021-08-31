@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
-    @tag_list = params[:review][:tag_name].split(nil)
+    @tag_list = params[:review][:tag_name].split(/[[:blank:]]+/)
     if @review.save
       @review.save_tag(@tag_list)
       flash[:success] = 'レビュー新規投稿完了しました！'
@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    @tag_list = params[:review][:tag_name].split(nil)
+    @tag_list = params[:review][:tag_name].split(/[[:blank:]]+/)
     if @review.update(review_params)
       @review.update_tag(@tag_list)
       flash[:success] = 'レビュー編集完了しました！'
